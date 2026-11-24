@@ -26,16 +26,22 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        BroadcastMessage("OnDamageTaken");
         hitPoints -= damage;
 
         if(hitPoints <= damage)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            //print("You're dead!");
+            Die();
         }
     }
 
 
 
 
-    // Students add Die() in Week 16.
+    private void Die()
+    {
+        GetComponent<Animator>().SetTrigger("die");
+    }
 }
